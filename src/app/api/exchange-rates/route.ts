@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 // Mock exchange rates - in production, you'd use a real API like CoinGecko
 type Currency = 'BSV' | 'BTC' | 'ETH' | 'USD' | 'EUR'
 
