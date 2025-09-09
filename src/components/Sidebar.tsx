@@ -3,10 +3,30 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import { useState, useEffect } from 'react'
 
 const Sidebar = () => {
   const pathname = usePathname()
   const { data: session } = useSession()
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  useEffect(() => {
+    if (session?.user) {
+      checkAdminStatus()
+    }
+  }, [session])
+
+  const checkAdminStatus = async () => {
+    try {
+      const response = await fetch('/api/admin/status')
+      if (response.ok) {
+        const data = await response.json()
+        setIsAdmin(data.isAdmin)
+      }
+    } catch (error) {
+      console.error('Failed to check admin status:', error)
+    }
+  }
 
   const navigationItems = [
     {
@@ -41,7 +61,7 @@ const Sidebar = () => {
     },
     {
       name: 'Profile',
-      href: session?.user ? `/profile/${session.user.name?.toLowerCase().replace(/\s+/g, '')}` : '/profile',
+      href: session?.user ? `/profile/${session.user.username}` : '/profile',
       icon: '👤',
       active: pathname?.startsWith('/profile'),
     },
@@ -57,6 +77,12 @@ const Sidebar = () => {
       icon: '💰',
       active: pathname === '/wallet',
     },
+    ...(isAdmin ? [{
+      name: 'Admin Panel',
+      href: '/admin',
+      icon: '🔒',
+      active: pathname === '/admin',
+    }] : [])
   ]
 
   return (

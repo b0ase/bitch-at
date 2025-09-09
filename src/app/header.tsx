@@ -61,10 +61,11 @@ export default function Header() {
               </div>
             ) : (
               <button
-                onClick={() => signIn('twitter')}
-                className="bg-twitter-blue hover:bg-twitter-dark-hover text-white px-4 py-2 rounded-lg transition-colors"
+                onClick={() => signIn('google')}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
               >
-                Sign In with Twitter
+                <span className="text-lg">🔒</span>
+                <span>Sign In with Google</span>
               </button>
             )}
 
