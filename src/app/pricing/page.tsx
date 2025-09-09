@@ -185,7 +185,7 @@ export default function PricingPage() {
                   plan.name === 'Free'
                     ? 'bg-gray-700 text-gray-300 cursor-default'
                     : plan.popular
-                    ? 'bg-twitter-blue hover:bg-twitter-dark-hover text-white'
+                    ? 'bg-gray-700 hover:bg-gray-600 text-white'
                     : 'bg-gray-700 hover:bg-gray-600 text-white'
                 }`}
                 disabled={plan.name === 'Free'}

@@ -96,7 +96,7 @@ const Timeline = () => {
         <p className="text-red-400 mb-4">{error}</p>
         <button
           onClick={fetchPosts}
-          className="bg-twitter-blue hover:bg-twitter-dark-hover text-white px-4 py-2 rounded-lg transition-colors"
+          className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
         >
           Try Again
         </button>

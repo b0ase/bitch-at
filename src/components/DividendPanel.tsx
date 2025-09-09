@@ -158,7 +158,7 @@ const DividendPanel: React.FC<DividendPanelProps> = ({ postId }) => {
                         <button
                           onClick={() => claimDividend(distribution.id)}
                           disabled={claiming === distribution.id}
-                          className="bg-twitter-blue hover:bg-twitter-dark-hover disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors"
+                          className="bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors"
                         >
                           {claiming === distribution.id ? 'Claiming...' : 'Claim Dividend'}
                         </button>

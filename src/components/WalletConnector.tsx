@@ -301,7 +301,7 @@ const WalletConnector: React.FC<WalletConnectorProps> = ({ onWalletConnected }) 
                   <button
                     onClick={() => connectWallet(wallet.type)}
                     disabled={isConnecting}
-                    className="w-full bg-twitter-blue hover:bg-twitter-dark-hover disabled:opacity-50 disabled:cursor-not-allowed text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                    className="w-full bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white py-2 px-4 rounded-lg transition-colors text-sm"
                   >
                     {isConnecting ? 'Connecting...' : 'Connect Wallet'}
                   </button>

@@ -170,7 +170,7 @@ export default function MarketplacePage() {
                   </div>
                 </div>
 
-                <button className="w-full bg-twitter-blue hover:bg-twitter-dark-hover text-white py-2 px-4 rounded-lg transition-colors text-sm font-medium">
+                <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors text-sm font-medium">
                   Buy Tokens
                 </button>
               </div>
@@ -187,7 +187,7 @@ export default function MarketplacePage() {
             </p>
             <Link
               href="/"
-              className="bg-twitter-blue hover:bg-twitter-dark-hover text-white px-6 py-3 rounded-lg transition-colors"
+              className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition-colors"
             >
               Create Your First NFT Post
             </Link>

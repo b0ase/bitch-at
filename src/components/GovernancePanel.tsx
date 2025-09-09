@@ -98,7 +98,7 @@ const GovernancePanel: React.FC<GovernancePanelProps> = ({ postId }) => {
     switch (type) {
       case 'content_moderation': return 'bg-red-500'
       case 'revenue_sharing': return 'bg-green-500'
-      case 'feature_unlock': return 'bg-blue-500'
+      case 'feature_unlock': return 'bg-gray-600'
       default: return 'bg-gray-500'
     }
   }
@@ -130,7 +130,7 @@ const GovernancePanel: React.FC<GovernancePanelProps> = ({ postId }) => {
         {session && userVotingPower >= 100 && (
           <button
             onClick={() => setShowCreateForm(!showCreateForm)}
-            className="bg-twitter-blue hover:bg-twitter-dark-hover text-white px-4 py-2 rounded-lg transition-colors"
+            className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors"
           >
             {showCreateForm ? 'Cancel' : 'Create Proposal'}
           </button>

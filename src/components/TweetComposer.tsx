@@ -120,7 +120,7 @@ const TweetComposer = () => {
 
           {/* NFT Options for Premium Users */}
           {isFocused && userIsPremium && (
-            <div className="mb-4 p-3 bg-gray-900 rounded-lg">
+            <div className="mb-4 p-3 bg-gray-800 rounded-lg">
               <div className="flex items-center space-x-3">
                 <input
                   type="checkbox"
@@ -141,7 +141,7 @@ const TweetComposer = () => {
 
           {/* Posting Cost for Free Users */}
           {isFocused && !userIsPremium && session && (
-            <div className="mb-4 p-3 bg-gray-900 rounded-lg">
+            <div className="mb-4 p-3 bg-gray-800 rounded-lg">
               <div className="text-yellow-400">
                 <span className="font-medium">Posting Cost:</span>
                 <span className="ml-2">{postingCost} BSV</span>
@@ -177,7 +177,7 @@ const TweetComposer = () => {
                 <button
                   type="submit"
                   disabled={!tweetText.trim() || isSubmitting || characterCount > maxLength}
-                  className="bg-twitter-blue hover:bg-twitter-dark-hover disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-6 py-2 rounded-full transition-colors"
+                  className="bg-gray-700 hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold px-6 py-2 rounded-full transition-colors"
                 >
                   {isSubmitting ? 'Posting...' : 'Post'}
                 </button>

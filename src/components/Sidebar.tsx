@@ -98,7 +98,7 @@ const Sidebar = () => {
         ))}
 
         {/* Post Button */}
-        <button className="w-full bg-twitter-blue hover:bg-twitter-dark-hover text-white font-bold py-3 px-4 rounded-full transition-colors mt-4">
+        <button className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-full transition-colors mt-4">
           Post
         </button>
       </nav>

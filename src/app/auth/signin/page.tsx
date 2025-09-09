@@ -75,7 +75,7 @@ export default function SignIn() {
 
             <button
               onClick={() => signIn('twitter', { callbackUrl: '/' })}
-              className="w-full bg-twitter-blue hover:bg-twitter-dark-hover text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
+              className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
             >
               <span>🐦</span>
               <span>Continue with Twitter</span>

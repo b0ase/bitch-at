@@ -28,7 +28,7 @@ export default function Home() {
           {/* Right Sidebar - Could be trending topics, etc. */}
           <div className="hidden xl:block xl:w-1/5 pl-8">
             <div className="sticky top-24">
-              <div className="bg-gray-900 rounded-lg p-4">
+              <div className="bg-gray-800 rounded-lg p-4">
                 <h3 className="text-lg font-bold mb-4">Trending on Bitch@</h3>
                 <div className="space-y-3">
                   <div className="text-sm">

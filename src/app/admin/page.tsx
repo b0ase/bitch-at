@@ -30,7 +30,7 @@ export default function AdminPanel() {
       description: 'Document creation and management',
       status: 'disconnected',
       endpoint: '/api/admin/docs',
-      color: 'bg-blue-500'
+      color: 'bg-gray-600'
     },
     {
       name: 'Google Sheets',
@@ -266,7 +266,7 @@ export default function AdminPanel() {
             <div className="bg-gray-900 rounded-lg p-6">
               <h3 className="font-bold text-lg mb-2">👥 User Management</h3>
               <p className="text-gray-400 text-sm mb-4">Manage users, ban accounts, view analytics</p>
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
+              <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors">
                 Manage Users
               </button>
             </div>
@@ -282,7 +282,7 @@ export default function AdminPanel() {
             <div className="bg-gray-900 rounded-lg p-6">
               <h3 className="font-bold text-lg mb-2">🎨 NFT Management</h3>
               <p className="text-gray-400 text-sm mb-4">Monitor NFT minting, token trading</p>
-              <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors">
+              <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors">
                 Manage NFTs
               </button>
             </div>
@@ -298,7 +298,7 @@ export default function AdminPanel() {
             <div className="bg-gray-900 rounded-lg p-6">
               <h3 className="font-bold text-lg mb-2">🔧 System Settings</h3>
               <p className="text-gray-400 text-sm mb-4">Configure platform settings, APIs</p>
-              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors">
+              <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors">
                 System Config
               </button>
             </div>

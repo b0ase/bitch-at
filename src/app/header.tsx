@@ -107,7 +107,7 @@ export default function Header() {
                 {/* Regular User Sign In */}
                 <button
                   onClick={() => signIn('twitter')}
-                  className="bg-twitter-blue hover:bg-twitter-dark-hover text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
+                  className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
                 >
                   <span className="text-lg">🐦</span>
                   <span>Sign In</span>
@@ -158,7 +158,7 @@ export default function Header() {
                 <div className="border-t border-gray-700 pt-4 mt-4 space-y-3">
                   <button
                     onClick={() => signIn('twitter')}
-                    className="w-full bg-twitter-blue hover:bg-twitter-dark-hover text-white py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
+                    className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
                   >
                     <span>🐦</span>
                     <span>Sign In with Twitter</span>

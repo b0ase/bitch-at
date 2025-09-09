@@ -4,6 +4,7 @@ import './globals.css'
 import Header from './header'
 import { Providers } from './providers'
 import MiningBar from '@/components/MiningBar'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,10 @@ export default function RootLayout({
         <Providers>
           <MiningBar />
           <Header />
-          {children}
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
         </Providers>
       </body>
     </html>

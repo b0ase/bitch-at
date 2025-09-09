@@ -104,7 +104,7 @@ export default function ExchangePage() {
           onClick={() => setSortBy('volume')}
           className={`px-4 py-2 rounded-lg transition-colors ${
             sortBy === 'volume'
-              ? 'bg-purple-600 text-white'
+              ? 'bg-gray-700 text-white'
               : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
           }`}
         >
@@ -114,7 +114,7 @@ export default function ExchangePage() {
           onClick={() => setSortBy('price')}
           className={`px-4 py-2 rounded-lg transition-colors ${
             sortBy === 'price'
-              ? 'bg-purple-600 text-white'
+              ? 'bg-gray-700 text-white'
               : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
           }`}
         >
@@ -124,7 +124,7 @@ export default function ExchangePage() {
           onClick={() => setSortBy('newest')}
           className={`px-4 py-2 rounded-lg transition-colors ${
             sortBy === 'newest'
-              ? 'bg-purple-600 text-white'
+              ? 'bg-gray-700 text-white'
               : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
           }`}
         >
