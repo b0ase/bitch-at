@@ -1,18 +1,16 @@
 import { NextAuthOptions } from 'next-auth'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { PrismaClient } from '@prisma/client'
 import GoogleProvider from 'next-auth/providers/google'
 import TwitterProvider from 'next-auth/providers/twitter'
 import CredentialsProvider from 'next-auth/providers/credentials'
-
-const prisma = new PrismaClient()
+import { prisma } from './prisma'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
       authorization: {
         params: {
           scope: 'openid email profile https://mail.google.com/ https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/analytics.readonly'
@@ -20,8 +18,8 @@ export const authOptions: NextAuthOptions = {
       }
     }),
     TwitterProvider({
-      clientId: process.env.TWITTER_CLIENT_ID!,
-      clientSecret: process.env.TWITTER_CLIENT_SECRET!,
+      clientId: process.env.TWITTER_CLIENT_ID || '',
+      clientSecret: process.env.TWITTER_CLIENT_SECRET || '',
       version: '2.0',
     }),
     // Wallet-agnostic sign-in - users can connect any wallet
