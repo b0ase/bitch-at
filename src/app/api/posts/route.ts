@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
 
     // Check if user is premium or can afford posting
     const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
+      where: { email: session.user.email },
       include: { wallet: true },
     })
 
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
 
       // Deduct posting cost
       await prisma.wallet.update({
-        where: { userId: session.user.id },
+        where: { userId: user.id },
         data: { balance: user.wallet.balance - postingCost },
       })
     }
@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
       data: {
         content: content.trim(),
         image,
-        userId: session.user.id,
+        userId: user.id,
         isPremium: user.isPremium,
         nftId,
       },
@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       await prisma.token.create({
         data: {
           postId: post.id,
-          ownerId: session.user.id,
+          ownerId: user.id,
           amount: 1000000, // 1M tokens
         },
       })

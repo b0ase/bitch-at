@@ -59,6 +59,9 @@ model User {
   tokens      Token[]
   subscription Subscription?
   wallet      Wallet?
+  proposals   GovernanceProposal[] @relation(name: "Proposer")
+  votes       GovernanceVote[]
+  dividendClaims DividendClaim[]
 }
 
 model VerificationToken {
@@ -91,6 +94,8 @@ model Post {
   comments Comment[]
   likes    Like[]
   tokens   Token[]
+  proposals GovernanceProposal[]
+  dividends DividendDistribution[]
 }
 
 model Comment {
@@ -162,3 +167,69 @@ model Subscription {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model GovernanceProposal {
+  id          String   @id @default(cuid())
+  postId      String
+  title       String
+  description String
+  type        String   // "content_moderation", "revenue_sharing", "feature_unlock"
+  status      String   @default("active") // "active", "passed", "rejected", "executed"
+  proposerId  String
+  votingPowerRequired Int @default(1000) // Minimum token holders needed to pass
+  quorum      Float @default(0.1) // Minimum percentage of total tokens for quorum
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  votingEndsAt DateTime
+
+  proposer    User @relation(name: "Proposer", fields: [proposerId], references: [id])
+  post        Post @relation(fields: [postId], references: [id])
+  votes       GovernanceVote[]
+
+  @@index([status, votingEndsAt])
+}
+
+model GovernanceVote {
+  id          String   @id @default(cuid())
+  proposalId  String
+  voterId     String
+  vote        String   // "yes", "no", "abstain"
+  votingPower Int // Number of tokens held by voter for this post
+  createdAt   DateTime @default(now())
+
+  proposal    GovernanceProposal @relation(fields: [proposalId], references: [id])
+  voter       User @relation(fields: [voterId], references: [id])
+
+  @@unique([proposalId, voterId])
+}
+
+model DividendDistribution {
+  id            String   @id @default(cuid())
+  postId        String
+  totalAmount   Float
+  amountPerToken Float
+  distributionDate DateTime @default(now())
+  status        String   @default("pending") // "pending", "distributing", "completed", "failed"
+  transactionId String?
+
+  post          Post @relation(fields: [postId], references: [id])
+  claims        DividendClaim[]
+
+  @@index([status, distributionDate])
+}
+
+model DividendClaim {
+  id              String   @id @default(cuid())
+  distributionId  String
+  tokenHolderId   String
+  amount          Float
+  tokensHeld      Int
+  claimedAt       DateTime?
+  status          String   @default("pending") // "pending", "claimed", "expired"
+
+  distribution    DividendDistribution @relation(fields: [distributionId], references: [id])
+  tokenHolder     User @relation(fields: [tokenHolderId], references: [id])
+
+  @@unique([distributionId, tokenHolderId])
+}
+

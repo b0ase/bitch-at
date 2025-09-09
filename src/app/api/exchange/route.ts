@@ -44,9 +44,9 @@ export async function GET(request: NextRequest) {
             comments: true,
           },
         },
-        tokens: session?.user?.email ? {
+        tokens: session?.user?.id ? {
           where: {
-            ownerId: session.user.email,
+            ownerId: session.user.id,
           },
           select: {
             amount: true,
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
 
     // Calculate user token holdings if signed in
     const postsWithUserTokens = posts.map(post => {
-      const userTokens = session?.user?.email && post.tokens
+      const userTokens = session?.user?.id && post.tokens
         ? post.tokens.reduce((sum, token) => sum + token.amount, 0)
         : 0
 
