@@ -98,7 +98,7 @@ export default function SignIn() {
 
             <button
               onClick={() => signIn('google', { callbackUrl: '/admin' })}
-              className="w-full bg-white hover:bg-gray-100 text-black font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
+              className="w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center space-x-2"
             >
               <span>🔒</span>
               <span>Continue with Google</span>
