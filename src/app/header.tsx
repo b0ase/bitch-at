@@ -14,7 +14,7 @@ export default function Header() {
     <>
       {/* Admin Bar - Only show for admin users */}
       {isAdmin && (
-        <div className="bg-gradient-to-r from-red-900 to-red-800 border-b border-red-700 sticky top-0 z-50">
+        <div className="bg-gradient-to-r from-red-900 to-red-800 border-b border-red-700 sticky top-9 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-2">
               <div className="flex items-center space-x-4">
@@ -52,7 +52,7 @@ export default function Header() {
         </div>
       )}
 
-      <header className={`bg-black border-b border-gray-800 sticky ${isAdmin ? 'top-10' : 'top-0'} z-40`}>
+      <header className={`bg-black border-b border-gray-800 sticky ${isAdmin ? 'top-[76px]' : 'top-9'} z-40`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}

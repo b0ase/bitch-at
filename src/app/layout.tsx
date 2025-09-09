@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Header from './header'
 import { Providers } from './providers'
+import MiningBar from '@/components/MiningBar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-black text-white`}>
         <Providers>
+          <MiningBar />
           <Header />
           {children}
         </Providers>
