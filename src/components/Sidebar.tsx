@@ -66,10 +66,10 @@ const Sidebar = () => {
       active: pathname?.startsWith('/profile'),
     },
     {
-      name: 'Marketplace',
-      href: '/marketplace',
-      icon: '🛒',
-      active: pathname === '/marketplace',
+      name: 'Exchange',
+      href: '/exchange',
+      icon: '📈',
+      active: pathname === '/exchange',
     },
     {
       name: 'Wallet',
@@ -77,16 +77,10 @@ const Sidebar = () => {
       icon: '💰',
       active: pathname === '/wallet',
     },
-    ...(isAdmin ? [{
-      name: 'Admin Panel',
-      href: '/admin',
-      icon: '🔒',
-      active: pathname === '/admin',
-    }] : [])
   ]
 
   return (
-    <div className="sticky top-20">
+    <div className={`sticky ${isAdmin ? 'top-20' : 'top-16'}`}>
       <nav className="space-y-1">
         {navigationItems.map((item) => (
           <Link
@@ -138,16 +132,6 @@ const Sidebar = () => {
         </div>
       )}
 
-      {/* Bitch@ Info */}
-      <div className="mt-8 p-4 bg-gradient-to-r from-purple-900 to-pink-900 rounded-lg">
-        <h3 className="font-bold text-white mb-2">About Bitch@</h3>
-        <p className="text-sm text-gray-300 mb-3">
-          Decentralized social platform on Bitcoin SV. Troll Jack Dorsey's BitChat fantasy.
-        </p>
-        <div className="text-xs text-gray-400">
-          Built on Real Bitcoin 🚀
-        </div>
-      </div>
     </div>
   )
 }

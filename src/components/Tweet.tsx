@@ -36,21 +36,63 @@ const Tweet = ({ tweet, onLike, onRetweet, onReply }: TweetProps) => {
   const [likeCount, setLikeCount] = useState(tweet.likes)
   const [retweetCount, setRetweetCount] = useState(tweet.retweets)
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (onLike) {
       onLike(tweet.id)
     } else {
-      setIsLiked(!isLiked)
-      setLikeCount(prev => isLiked ? prev - 1 : prev + 1)
+      // Buy 1 token when liking (costs 1/100th of a penny)
+      try {
+        const response = await fetch('/api/posts/like', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            postId: tweet.id,
+            action: isLiked ? 'unlike' : 'like'
+          }),
+        })
+
+        if (response.ok) {
+          setIsLiked(!isLiked)
+          setLikeCount(prev => isLiked ? prev - 1 : prev + 1)
+        } else {
+          alert('Failed to like post. Check your wallet balance.')
+        }
+      } catch (error) {
+        console.error('Failed to like post:', error)
+        alert('Failed to like post.')
+      }
     }
   }
 
-  const handleRetweet = () => {
+  const handleRetweet = async () => {
     if (onRetweet) {
       onRetweet(tweet.id)
     } else {
-      setIsRetweeted(!isRetweeted)
-      setRetweetCount(prev => isRetweeted ? prev - 1 : prev + 1)
+      // Buy 10 tokens when sharing (costs 1/10th of a penny)
+      try {
+        const response = await fetch('/api/posts/share', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            postId: tweet.id,
+            action: isRetweeted ? 'unshare' : 'share'
+          }),
+        })
+
+        if (response.ok) {
+          setIsRetweeted(!isRetweeted)
+          setRetweetCount(prev => isRetweeted ? prev - 1 : prev + 1)
+        } else {
+          alert('Failed to share post. Check your wallet balance.')
+        }
+      } catch (error) {
+        console.error('Failed to share post:', error)
+        alert('Failed to share post.')
+      }
     }
   }
 

@@ -70,16 +70,22 @@ model VerificationToken {
 }
 
 model Post {
-  id          String    @id @default(cuid())
-  content     String
-  image       String?
-  userId      String
-  isPremium   Boolean   @default(false)
-  nftId       String?   @unique
-  tokenSupply Int       @default(1000000) // 1M tokens per post
-  commentCost Float     @default(0.001)   // BSV cost for comments
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  id              String    @id @default(cuid())
+  content         String
+  image           String?
+  userId          String
+  isPremium       Boolean   @default(false)
+  nftId           String?   @unique
+  totalTokenSupply Int      @default(1000000) // 1M tokens per post
+  platformTokens  Int      @default(10000)   // Bitch@ owns 1% (10K tokens)
+  availableTokens Int      @default(990000)  // 99% available for trading
+  tokenPrice      Float    @default(0.0001) // Base price in USD cents
+  likeCost        Float    @default(0.0001) // Cost in USD cents per like
+  shareCost       Float    @default(0.001)  // Cost in USD cents per share
+  commentCost     Float    @default(0.001)  // Cost in USD cents per comment
+  acceptedCurrencies String @default("BSV,BTC,ETH,USD,EUR") // Comma-separated list
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   comments Comment[]
@@ -112,27 +118,35 @@ model Like {
 }
 
 model Token {
-  id          String  @id @default(cuid())
+  id          String   @id @default(cuid())
   postId      String
   ownerId     String
-  amount      Int     @default(1)
-  price       Float   @default(0.001) // BSV price per token
+  amount      Int      @default(1)
+  purchasePrice Float  @default(0.0001) // Price paid per token
+  acquiredVia  String? // 'like', 'share', 'purchase', 'platform'
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   post  Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([postId, ownerId])
 }
 
 model Wallet {
-  id        String  @id @default(cuid())
-  userId    String  @unique
-  address   String  @unique
-  balance   Float   @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  walletType  String   @default("bsv") // bsv, btc, eth, etc.
+  address     String   @unique
+  balance     Float    @default(0)
+  currency    String   @default("BSV") // BSV, BTC, ETH, USD, EUR, etc.
+  exchangeRate Float   @default(1) // Rate to convert to BSV
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([walletType, currency])
 }
 
 model Subscription {

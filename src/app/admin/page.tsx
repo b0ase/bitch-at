@@ -184,7 +184,7 @@ export default function AdminPanel() {
             Manage your Google Workspace integrations and Bitch@ platform
           </p>
           <div className="mt-4 text-sm text-gray-500">
-            Signed in as: {session.user.email}
+            Signed in as: {session.user?.email || 'Unknown User'}
           </div>
         </div>
 

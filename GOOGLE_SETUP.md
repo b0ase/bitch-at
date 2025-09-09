@@ -63,9 +63,14 @@ DATABASE_URL="file:./dev.db"
 
 **🚨 IMPORTANT PORT CONFIGURATION:**
 - Your dev server is running on port **3000**
-- **Callback URL**: `http://localhost:3000/api/auth/callback/google`
+- **Google Callback URL**: `http://localhost:3000/api/auth/callback/google`
+- **Twitter Callback URL**: `http://localhost:3000/api/auth/callback/twitter`
 - **NEXTAUTH_URL** should be: `http://localhost:3000`
 - If your server runs on a different port, update these URLs accordingly
+
+**🔐 DUAL AUTHENTICATION SYSTEM:**
+- **🔒 Google OAuth**: For you (admin) - full Google Workspace access
+- **🐦 Twitter OAuth**: For regular users - seamless Twitter-like experience
 
 **🔐 REQUESTED SCOPES:**
 The app requests these OAuth scopes for full admin functionality:
@@ -76,7 +81,8 @@ The app requests these OAuth scopes for full admin functionality:
 - `https://www.googleapis.com/auth/drive` - Full Google Drive access
 - `https://www.googleapis.com/auth/youtube.readonly` - YouTube access
 - `https://www.googleapis.com/auth/analytics.readonly` - Analytics access
-- `https://www.googleapis.com/auth/generative-language.restricted` - Gemini AI access
+
+**Note:** Gemini AI access requires separate API key configuration, not OAuth scopes.
 
 ## Step 5: Set Admin User
 To make yourself an admin user:
