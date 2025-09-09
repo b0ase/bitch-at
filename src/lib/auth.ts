@@ -13,7 +13,7 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
       authorization: {
         params: {
-          scope: 'openid email profile https://www.googleapis.com/auth/gmail.readonly https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/analytics.readonly'
+          scope: 'openid email profile https://mail.google.com/ https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/generative-language.restricted'
         }
       }
     }),

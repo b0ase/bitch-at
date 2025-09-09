@@ -14,13 +14,13 @@ Enable these APIs in your Google Cloud project:
 
 ### Core APIs (Required for Authentication)
 - **Google+ API** (for basic profile info)
-- **Gmail API** (for email management)
-- **Google Drive API** (for file storage)
-- **Google Docs API** (for document creation)
-- **Google Sheets API** (for spreadsheet data)
+- **Gmail API** (for full email access and automation)
+- **Google Drive API** (for complete file storage and management)
+- **Google Docs API** (for document creation and editing)
+- **Google Sheets API** (for spreadsheet data and analysis)
 - **YouTube Data API v3** (for video management)
 - **Google Analytics API** (for website analytics)
-- **PaLM API** (for Gemini AI features)
+- **PaLM API** (for Gemini AI with restricted access)
 
 ### How to Enable APIs:
 1. Go to "APIs & Services" > "Library"
@@ -32,10 +32,10 @@ Enable these APIs in your Google Cloud project:
 2. Click "Create Credentials" > "OAuth 2.0 Client IDs"
 3. Choose "Web application"
 4. Add authorized origins:
-   - `http://localhost:3000` (for development)
+   - `http://localhost:3000` (for development - check your actual port)
    - Your production domain when deployed
 5. Add redirect URIs:
-   - `http://localhost:3000/api/auth/callback/google`
+   - `http://localhost:3000/api/auth/callback/google` (match your dev server port)
    - Your production callback URL
 6. Save and note your Client ID and Client Secret
 
@@ -56,7 +56,27 @@ GMAIL_API_KEY="your-gmail-api-key"
 GOOGLE_DRIVE_API_KEY="your-drive-api-key"
 YOUTUBE_API_KEY="your-youtube-api-key"
 GEMINI_API_KEY="your-gemini-api-key"
+
+# Database
+DATABASE_URL="file:./dev.db"
 ```
+
+**🚨 IMPORTANT PORT CONFIGURATION:**
+- Your dev server is running on port **3000**
+- **Callback URL**: `http://localhost:3000/api/auth/callback/google`
+- **NEXTAUTH_URL** should be: `http://localhost:3000`
+- If your server runs on a different port, update these URLs accordingly
+
+**🔐 REQUESTED SCOPES:**
+The app requests these OAuth scopes for full admin functionality:
+- `openid email profile` - Basic Google account access
+- `https://mail.google.com/` - Full Gmail access (read/write/compose)
+- `https://www.googleapis.com/auth/documents` - Google Docs access
+- `https://www.googleapis.com/auth/spreadsheets` - Google Sheets access
+- `https://www.googleapis.com/auth/drive` - Full Google Drive access
+- `https://www.googleapis.com/auth/youtube.readonly` - YouTube access
+- `https://www.googleapis.com/auth/analytics.readonly` - Analytics access
+- `https://www.googleapis.com/auth/generative-language.restricted` - Gemini AI access
 
 ## Step 5: Set Admin User
 To make yourself an admin user:
